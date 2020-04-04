@@ -1,5 +1,6 @@
 from turtle import *
 import time
+import random
 
 delay = 0.1
 #Configuracion ventana
@@ -18,6 +19,13 @@ kbza.color("green")
 kbza.penup()
 kbza.goto(0,0)
 kbza.direction = "stop"
+
+#Comida
+ven.register_shape("Apple.gif")
+food = Turtle("Apple.gif")
+food.speed(0)
+food.penup()
+food.goto(100, 100)
 
 def arriba():
     kbza.direction = "up"
@@ -47,8 +55,12 @@ ven.onkeypress(arriba, "Up")
 ven.onkeypress(abajo, "Down")
 ven.onkeypress(izq, "Left")
 ven.onkeypress(der, "Right")
+
 while True:
     ven.update()
-
+    if kbza.distance(food) < 20:
+        x = random.randint(-380,380)
+        y = random.randint(-380,300)
+        food.goto(x,y)
     mov()
     time.sleep(delay)
