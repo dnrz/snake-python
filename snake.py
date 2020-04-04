@@ -27,6 +27,9 @@ food.speed(0)
 food.penup()
 food.goto(100, 100)
 
+#segmentos
+segmentos = []
+
 def arriba():
     kbza.direction = "up"
 def abajo():
@@ -62,5 +65,20 @@ while True:
         x = random.randint(-380,380)
         y = random.randint(-380,300)
         food.goto(x,y)
+        nuevo_Segmento = Turtle()
+        nuevo_Segmento.speed(0)
+        nuevo_Segmento.shape("square")
+        nuevo_Segmento.color("green")
+        nuevo_Segmento.penup()
+        segmentos.append(nuevo_Segmento)
+    totalSeg = len(segmentos)
+    for index in range(totalSeg -1, 0, -1):
+        x = segmentos[index - 1].xcor()
+        y = segmentos[index - 1].ycor()
+        segmentos[index].goto(x,y)
+    if totalSeg > 0:
+        x = kbza.xcor()
+        y = kbza.ycor()
+        segmentos[0].goto(x,y)
     mov()
     time.sleep(delay)
